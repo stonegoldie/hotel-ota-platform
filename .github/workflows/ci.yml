@@ -22,16 +22,17 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
-    steps:S      - name: Checkout repo
-        uses: actions/checkout@v4
+    steps:
 
+          # Setup Node.js but don't trigger Yarn yet
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: yarn
+          cache: 'npm' # Disable Yarn cache to avoid early Yarn 1 call
 
-      - name: Enable Corepack and Yarn 3.x
+      # Enable Corepack and prepare Yarn 3.6.4 BEFORE anything else
+      - name: Enable Corepack and Yarn 3.6.4
         run: |
           corepack enable
           corepack prepare yarn@3.6.4 --activate
