@@ -48,7 +48,8 @@ jobs:
 
       # Install dependencies using yarn.lock
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
+
 
       # Run lint check
       - name: Lint
